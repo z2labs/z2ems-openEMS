@@ -1,0 +1,88 @@
+name: Bug Report
+description: Report a reproducible bug in the openEMS solver, API, or build system.
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Before filing:** if you have a usage question ("how do I set up a port?",
+        "why does my result look wrong?", "what mesh resolution should I use?"),
+        please use [GitHub Discussions](https://github.com/thliebig/openEMS-Project/discussions)
+        instead. Issues are for reproducible bugs only.
+
+        A **bug** means one of:
+        - crash or assertion failure
+        - simulation produces a demonstrably incorrect result (compared to an analytic
+          reference or a known-good case)
+        - API or build breakage (C++, Octave/Matlab, or Python)
+
+  - type: input
+    id: version
+    attributes:
+      label: openEMS version
+      description: Output of `openEMS --help` or the git commit hash.
+      placeholder: "e.g. v0.0.36-123-gabcdef0"
+    validations:
+      required: true
+
+  - type: input
+    id: os
+    attributes:
+      label: Operating system
+      placeholder: "e.g. Ubuntu 22.04, macOS 14 (ARM), Windows 11"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: interface
+    attributes:
+      label: Scripting interface used
+      options:
+        - Octave / Matlab
+        - Python
+        - C++ / direct API
+        - Build system (CMake)
+        - Other / not applicable
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: Describe the bug. Include error messages or wrong output.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect?
+      description: What should have happened instead?
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproducer
+    attributes:
+      label: Minimal reproducer
+      description: >
+        The shortest script or set of steps that reliably triggers the bug.
+        Please trim it down — a 10-line example is far easier to debug than a
+        full simulation. Attach or link large files rather than pasting them.
+      render: shell
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: I confirmed this bug exists on the latest `git master` branch.
+          required: true
+        - label: >
+            I searched existing issues and Discussions and did not find a
+            duplicate or an answer.
+          required: true
+        - label: This is a reproducible bug, not a usage question.
+          required: true
